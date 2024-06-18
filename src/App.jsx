@@ -37,8 +37,6 @@ export const App = () => {
   const [query, setQuery] = useState('');
   const [categories, setCategori] = useState('All');
 
-  setCategori('All');
-
   const whatSexIs = sex => {
     return sex === 'm' ? `has-text-link` : `has-text-danger`;
   };
@@ -97,6 +95,7 @@ export const App = () => {
                     data-cy="FilterUser"
                     href="#/"
                     className={active === user ? 'is-active' : ''}
+                    key={user}
                   >
                     {user}
                   </a>
@@ -136,6 +135,7 @@ export const App = () => {
                 href="#/"
                 data-cy="AllCategories"
                 className="button is-success mr-6 is-outlined"
+                onClick={() => setCategori('All')}
               >
                 All
               </a>
@@ -144,6 +144,7 @@ export const App = () => {
                   data-cy="Category"
                   className="button mr-2 my-1 is-info"
                   href="#/"
+                  key={categorie.id}
                 >
                   {categorie.category.title}
                 </a>
@@ -227,7 +228,7 @@ export const App = () => {
 
             <tbody>
               {filterByName().map(product => (
-                <tr data-cy="Product">
+                <tr key={product.id} data-cy="Product">
                   <td className="has-text-weight-bold" data-cy="ProductId">
                     {product.id}
                   </td>
